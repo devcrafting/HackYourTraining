@@ -6,9 +6,12 @@ open System
 open System.IO
 open System.Diagnostics
 
-let build () = 
+let build msbuild = 
     MSBuildHelper.MSBuildLoggers <- []
-    MSBuildDebug "./build" "Build" [__SOURCE_DIRECTORY__ + "/HackYourTraining.fsproj"]
+    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/HackYourTraining.fsproj"]
+
+let buildDebug () = build MSBuildDebug
+let buildRelease () = build MSBuildRelease
 
 let runAndForget () = 
     fireAndForget (fun info -> 
@@ -17,7 +20,7 @@ let runAndForget () =
 
 let stop () = killProcess "HackYourTraining"
 
-let reload = stop >> build >> ignore >> runAndForget
+let reload = stop >> buildDebug >> ignore >> runAndForget
 
 let waitUserStopRequest () = 
     () |> traceLine |> traceLine
@@ -36,11 +39,18 @@ let reloadOnChange () =
 
 let askStop = waitUserStopRequest >> stop
 
-Target "build" (build >> ignore)
+let buildDocker () = 
+    directExec (fun info ->
+        info.FileName <- "docker"
+        info.Arguments <- "build -t hackyourtraining .")
+
+Target "build" (buildDebug >> ignore)
 
 Target "run" (runAndForget >> askStop)
 
 Target "watch" (runAndForget >> reloadOnChange >> askStop)
+
+Target "publish" (buildRelease >> ignore >> buildDocker >> ignore)
 
 "build"
     ==> "run"
