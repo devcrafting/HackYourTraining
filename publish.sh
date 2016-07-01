@@ -1,1 +1,1 @@
-sh ./fake.sh publish
+sh ./restore.and.build.sh publish
