@@ -40,7 +40,7 @@ let reloadOnChange () =
 let askStop = waitUserStopRequest >> stop
 
 let buildDocker () = 
-    fireAndForget (fun info -> 
+    directExec (fun info ->
         info.FileName <- "docker"
         info.Arguments <- "build -t hackyourtraining .")
 
