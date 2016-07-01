@@ -1,0 +1,1 @@
+sh ./fake.sh publish
