@@ -24,13 +24,15 @@ let interestedTrainees =
      "Kevin Lejeune", "https://twitter.com/kevin_le_jeune";
      "Karol Chmist", "https://twitter.com/karolchmist";
      "Gregory Cica", "";
+     "François Miton", "";
+     "Bertrand Saintes", "";
      "Samuel Pecoul", "https://twitter.com/SamPecoul";
      "Nadège Rouelle", "https://twitter.com/nadegerouelle";
      "Romain Berthon", "https://twitter.com/RomainTrm";
-	 "Benjamin GAREL", "https://twitter.com/bgarel";
-	 "Romain DEQUIDT", "https://twitter.com/romain_dequidt";
-	 "Lucas Courot", "https://twitter.com/lucas_courot";
-	 "Jean Detoeuf", "https://twitter.com/thebignet"
+     "Benjamin GAREL", "https://twitter.com/bgarel";
+     "Romain DEQUIDT", "https://twitter.com/romain_dequidt";
+     "Lucas Courot", "https://twitter.com/lucas_courot";
+     "Jean Detoeuf", "https://twitter.com/thebignet"
      ]
 
 let getInterestedTrainees =
