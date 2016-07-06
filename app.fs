@@ -44,7 +44,10 @@ let getInterestedTrainees =
 let app : WebPart =
     choose 
         [ 
-            Filters.GET >=> choose [ Filters.path "/" >=> Files.browseFileHome "index.html"; Files.browseHome ] 
+            Filters.GET >=> choose 
+                [ Filters.path "/" >=> Files.browseFileHome "index.html"
+                  pathScan "/%s" (fun path -> Files.browseFileHome (sprintf "%s/index.html" path))
+                  Files.browseHome ] 
             GET >=> choose
                 [ path "/interestedTrainees" >=> request (fun req -> OK getInterestedTrainees)]   
             RequestErrors.NOT_FOUND "Page not found." 
