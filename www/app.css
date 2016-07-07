@@ -38,6 +38,22 @@ body {
     text-align: center;
 }
 
+.hyt-answer-title {
+    font-size: 3rem;
+}
+
+.hyt-answer-picture {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    border-radius: 500px;
+}
+
+.hyt-answer-hightlight {
+    font-weight: bold; 
+}
+
 .hyt-content {
     font-size: 2rem;
     text-align: justify;
@@ -54,7 +70,7 @@ body {
      content: "."
  }
 
-.hyt-proposal-registerButton {
+.hyt-proposal-registerButton, .hyt-answer-proposeButton {
     padding: 10px 40px;
     font-size: 3rem;
     text-align: center;

@@ -10,7 +10,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">HackYourTraining</a>
+                <a class="navbar-brand" href="/">HackYourTraining - Training by the community and for the community</a>
             </div>
 
             <div class="collapse navbar-collapse">
@@ -22,52 +22,35 @@
     </nav>
 
     <div class="container" ng-controller="hackYourTrainingController as hack">
-        <div class="row hyt-home">
-            <div class="hyt-home-content">
-                <h1>Hack Your Training</h1>
-                <h2>Training by the community and for the community</h2>
-            </div>
-        </div>
-
-        <div class="row">
+        <div class="row hyt-answer">
+            <h2 class="hyt-answer-title"><img src="/greg_young.jpg" class="hyt-answer-picture" /> Greg Young (Lyon - September)</h2>
             <p class="hyt-content">
-                We would like training to be popularized and pulled by the community to raise the bar
-                (instead of pushed corporate/"one size fit all" training).<br /><br />
-                Then, the goal is that anyone could propose a training somewhere with a subject and a "trainer of his dream".<br /><br />
-                You can show your interest in a training, given you would be able to assist on some conditions? Note there is
-                absolutely NO commitment.
+                Hi Greg,
             </p>
-        </div>
-
-        <div class="row">
-            <h1 class="hyt-title">Last training proposal</h1>
-        </div>
-
-        <div class="row hyt-proposal">
-            <img src="greg_young.jpg" class="hyt-proposal-picture" />
-            <h2 class="hyt-proposal-title">Greg Young (Lyon - September)</h2>
-            <a href="https://goo.gl/forms/rYYfFJTtT00Q35Sg1" class="btn btn-success hyt-proposal-registerButton">I'm interested</a>
             <p class="hyt-content">
                 <a href="https://twitter.com/Ouarzy">Emilien Pecoul</a>
-                propose a <a href="https://twitter.com/gregyoung">Greg Young</a>
-                on CQRS/Event Sourcing
-                in <a href="https://www.google.fr/maps/place/Lyon">Lyon</a>
-                in September 2016
+                asked the community if they would be interested in a training 
+                on CQRS/Event Sourcing training with you,
+                in <a href="https://www.google.fr/maps/place/Lyon">Lyon</a>,
+                in september 2016.
             </p>
             <p class="hyt-content">
-                Greg Young coined the term CQRS (Command Query Responsibility Segregation) and it was instantly picked up by the community who have elaborated upon it ever since.
-                <br />
-                Greg is an independent consultant and serial entrepreneur. He has 10+ years of varied experience in computer science from embedded operating systems to business
-                systems and he brings a pragmatic and often times unusual viewpoint to discussions.
-                <br />
-                He's a frequent contributor to <a href="https://www.infoq.com/">InfoQ</a>, speaker/trainer at <a href="https://skillsmatter.com/">Skills Matter</a> and also a well-known speaker at international conferences.
-                Greg also writes about CQRS, DDD and other hot topics on <a href="www.codebetter.com">www.codebetter.com</a>.
-            </p>
-            <p class="hyt-content">
-                Currently interested people (<span ng-bind="hack.nbInterestedTrainees"></span>/15):
+                Currently, <span class="hyt-answer-hightlight"><span ng-bind="hack.nbInterestedTrainees"></span> people are interested in this training</span> :
                 <span class="hyt-proposal-people" ng-repeat="trainee in hack.interestedTrainees">
                    <a ng-href="{{trainee.twitterUrl}}">{{trainee.name}}</a>
                 </span>
+                <br/>
+                They have not made any commitment to come, but we expect that around half of them would assist the training if you accept their request (perhaps others will join once planned).
+            </p>
+            <p class="hyt-content">
+                <span class="hyt-answer-hightlight">Now, it is your turn to answer if you could propose them this training with a programme, dates, a price...</span>
+                <br/>
+                To help you better understand their request, they gave <a href="https://docs.google.com/spreadsheets/d/1P1zRyRZ0Ypb3HttC6jpWiMBc6EmkEf0DPNTC4wh_ilQ/edit?usp=sharing">some constraints and expectations</a>. It is up to you to propose a training that match them at best.
+                <a href="http://goo.gl/forms/3xrl0nWyFf6yf8wu1" class="btn btn-success hyt-answer-proposeButton">I answer</a>
+            </p>
+            <p class="hyt-content">
+                NB: from logistic point of view, it will be organized by these interested people, with the help of local companies (for hosting, meals and official training).
+                These companies will not take any margin on your price (as the training is organized by community for community), but free tickets could be offered as a compensation for their help.
             </p>
         </div>
 
