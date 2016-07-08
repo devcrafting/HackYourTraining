@@ -34,6 +34,7 @@ let interestedTrainees =
      "Lucas Courot", "https://twitter.com/lucas_courot";
      "Jean Detoeuf", "https://twitter.com/thebignet";
      "Agnès Crepet", "https://twitter.com/agnes_crepet";
+     "Mathieu Petitdant", "https://twitter.com/mpetitdant"
      ]
 
 let getInterestedTrainees =
