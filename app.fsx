@@ -12,4 +12,4 @@ open app
 
 startWebServer { defaultConfig with 
                         homeFolder = Some (Path.Combine(__SOURCE_DIRECTORY__, "www"))
-                        bindings = [ HttpBinding.mk HTTP IPAddress.Loopback 8083us ] } app
+                        bindings = [ HttpBinding.mk HTTP IPAddress.Loopback 8083us ] } (app (Path.Combine(__SOURCE_DIRECTORY__, "node_modules"))) 

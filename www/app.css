@@ -62,11 +62,11 @@ body {
     padding-right: 50px;
 }
 
-.hyt-proposal-people a::after {
+.hyt-proposal-people::after {
     content: ", "
 }
 
-.hyt-proposal-people:last-child a::after {
+.hyt-proposal-people:last-child::after {
      content: "."
  }
 

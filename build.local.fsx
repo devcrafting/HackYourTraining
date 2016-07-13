@@ -16,7 +16,7 @@ let buildRelease () = build MSBuildRelease
 let runAndForget () = 
     fireAndForget (fun info -> 
         info.FileName <- "./build/HackYourTraining.exe"
-        info.Arguments <- Path.Combine(__SOURCE_DIRECTORY__, "www") + " 8083")
+        info.Arguments <- Path.Combine(__SOURCE_DIRECTORY__, "www") + " " + Path.Combine(__SOURCE_DIRECTORY__, "node_modules") + " 8083")
 
 let stop () = killProcess "HackYourTraining"
 
@@ -37,6 +37,12 @@ let watchSource action =
 let reloadOnChange () =
     watchSource reload
 
+let fableWatch () =
+    fireAndForget (fun info ->
+        info.FileName <- "node"
+        info.Arguments <- "./node_modules/fable-compiler/fable.js -w")
+    |> ignore
+
 let askStop = waitUserStopRequest >> stop
 
 let buildDocker () = 
@@ -48,7 +54,7 @@ Target "build" (buildDebug >> ignore)
 
 Target "run" (runAndForget >> askStop)
 
-Target "watch" (runAndForget >> reloadOnChange >> askStop)
+Target "watch" (runAndForget >> reloadOnChange >> fableWatch >> askStop)
 
 Target "publish" (buildRelease >> ignore >> buildDocker >> ignore)
 

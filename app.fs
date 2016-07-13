@@ -39,15 +39,16 @@ let interestedTrainees =
 
 let getInterestedTrainees =
     interestedTrainees
-    |> List.map (fun trainee -> sprintf "{ \"name\": \"%s\", \"twitterUrl\": \"%s\" }" (fst trainee) (snd trainee))
+    |> List.map (fun trainee -> sprintf "{ \"Name\": \"%s\", \"TwitterUrl\": \"%s\" }" (fst trainee) (snd trainee))
     |> String.concat ","
-    |> sprintf "{ \"interestedTrainees\": [ %s ] }" 
+    |> sprintf "{ \"InterestedTrainees\": [ %s ] }" 
 
-let app : WebPart =
+let app nodeModulesDir : WebPart =
     choose 
         [ 
             Filters.GET >=> choose 
                 [ Filters.path "/" >=> Files.browseFileHome "index.html"
+                  pathScan "/node_modules/%s" (fun path -> Files.browseFile nodeModulesDir (sprintf "%s" path) )
                   pathScan "/%s" (fun path -> Files.browseFileHome (sprintf "%s/index.html" path))
                   Files.browseHome ] 
             GET >=> choose

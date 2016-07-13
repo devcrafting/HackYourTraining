@@ -1,102 +1,45 @@
+<!doctype html>
 <html>
+
 <head>
-    <title>Hack Your Training</title>
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="/app.css" type="text/css" rel="stylesheet">
+  <title>Hack Your Training</title>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="/app.css" type="text/css" rel="stylesheet">
 </head>
-<body ng-app="hackYourTraining" ng-cloak>
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">HackYourTraining</a>
-            </div>
 
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/about">About</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">HackYourTraining</a>
+      </div>
 
-    <div class="container" ng-controller="hackYourTrainingController as hack">
-        <div class="row hyt-home">
-            <div class="hyt-home-content">
-                <h1>Hack Your Training</h1>
-                <h2>Training by the community and for the community</h2>
-            </div>
-        </div>
-
-        <div class="row">
-            <p class="hyt-content">
-                We would like training to be popularized and pulled by the community to raise the bar
-                (instead of pushed corporate/"one size fit all" training).<br /><br />
-                Then, the goal is that anyone could propose a training somewhere with a subject and a "trainer of his dream".<br /><br />
-                You can show your interest in a training, given you would be able to assist on some conditions? Note there is
-                absolutely NO commitment.
-            </p>
-        </div>
-
-        <div class="row">
-            <h1 class="hyt-title">Last training proposal</h1>
-        </div>
-
-        <div class="row hyt-proposal">
-            <img src="greg_young.jpg" class="hyt-proposal-picture" />
-            <h2 class="hyt-proposal-title">Greg Young (Lyon - September)</h2>
-            <a href="https://goo.gl/forms/rYYfFJTtT00Q35Sg1" class="btn btn-success hyt-proposal-registerButton">I'm interested</a>
-            <p class="hyt-content">
-                <a href="https://twitter.com/Ouarzy">Emilien Pecoul</a>
-                propose a <a href="https://twitter.com/gregyoung">Greg Young</a> training
-                on CQRS/Event Sourcing
-                in <a href="https://www.google.fr/maps/place/Lyon">Lyon</a>
-                in September 2016
-            </p>
-            <p class="hyt-content">
-                Greg Young coined the term CQRS (Command Query Responsibility Segregation) and it was instantly picked up by the community who have elaborated upon it ever since.
-                <br />
-                Greg is an independent consultant and serial entrepreneur. He has 10+ years of varied experience in computer science from embedded operating systems to business
-                systems and he brings a pragmatic and often times unusual viewpoint to discussions.
-                <br />
-                He's a frequent contributor to <a href="https://www.infoq.com/">InfoQ</a>, speaker/trainer at <a href="https://skillsmatter.com/">Skills Matter</a> and also a well-known speaker at international conferences.
-                Greg also writes about CQRS, DDD and other hot topics on <a href="www.codebetter.com">www.codebetter.com</a>.
-            </p>
-            <p class="hyt-content">
-                Currently interested people (<span ng-bind="hack.nbInterestedTrainees"></span>/15):
-                <span class="hyt-proposal-people" ng-repeat="trainee in hack.interestedTrainees">
-                   <a ng-href="{{trainee.twitterUrl}}">{{trainee.name}}</a>
-                </span>
-            </p>
-        </div>
-
-        <div class="row">
-            <h1 id="/about" class="hyt-title">About</h1>
-        </div>
-
-        <div class="row">
-            <p class="hyt-content">
-                This project is open. You can contribute on <a href="https://github.com/fpellet/HackYourTraining">github</a>
-                and on <a href="https://softwarecraftsmanship.slack.com/messages/hackyourtraining/">slack</a>.
-                You can follow us also on <a href="http://twitter.com/HackYrTraining">Twitter</a>.
-                <br/>
-                For now, it is only a first experimentation, we are far from having all features implemented.
-                If your are interested to propose a training, please join us/contribute.
-            </p>
-        </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#/about">About</a></li>
+        </ul>
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
-    <script src="/app.js"></script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-46201950-2', 'auto');
-        ga('send', 'pageview');
-
-    </script>
+  </nav>
+  <div class="container" id="container">
+  </div>
+  <script src="../node_modules/core-js/client/core.min.js"></script>
+  <script src="../node_modules/requirejs/require.js"></script>
+  <script>
+    requirejs.config({
+        // Set the baseUrl to the path of the compiled JS code
+        baseUrl: 'js',
+        paths: {
+            // Explicit path to core lib (relative to baseUrl, omit .js)
+            'fable-core': '../../node_modules/fable-core/fable-core.min',
+            'virtual-dom': '../../node_modules/virtual-dom/dist/virtual-dom'
+        }
+    });
+    // Load the entry file of the app (use array, omit .js)
+    requirejs(["home"]);
+  </script>
 </body>
+
 </html>

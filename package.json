@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "hackyourtraining",
+  "version": "0.0.1",
+  "description": "Trainings are a good way to raise the bar. With training we could reach people outside of the community.\r But trainings are expensive. How can we disrupt classical training with the help of the community?",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackYourTraining/HackYourTraining.git"
+  },
+  "author": "Emilien Pecoul, Florent Pellet, Clément Bouillier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HackYourTraining/HackYourTraining/issues"
+  },
+  "homepage": "https://github.com/HackYourTraining/HackYourTraining#readme",
+  "//": "fable-import-virtualdom: temporary until PR https://github.com/fsprojects/Fable/pull/256 has been accepted and Node package deployed",
+  "devDependencies": {
+    "fable-compiler": "^0.3.26",
+    "fable-import-virtualdom": "file:./packages/Fable/import/virtualdom"
+  },
+  "dependencies": {
+    "core-js": "^2.4.0",
+    "fable-core": "^0.1.12",
+    "requirejs": "^2.2.0",
+    "virtual-dom": "^2.1.1"
+  }
+}

@@ -30,3 +30,5 @@ https://softwarecraftsmanship.slack.com on the channel hackyourtraining
 
 You can develop under Linux/OSX/Windows equally, just run the right `restore.and.build.*` script according your platform.
 It restores dependencies through Paket and run Fake script to start Suave.io web server (in dev mode, watching changed files).
+
+After having run `restore.and.build.*` script once, you can just run `fake.*`script with an optional target (`build` by default, but also `watch` or `run`).
