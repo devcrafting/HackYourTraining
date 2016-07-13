@@ -1,5 +1,7 @@
 #r "../node_modules/fable-core/Fable.Core.dll"
 #load "../node_modules/fable-import-virtualdom/Fable.Helpers.Virtualdom.fs"
+#load "views/about.fsx"
+#load "domain/home.fs"
 
 open Fable.Core 
 open Fable.Import
@@ -8,19 +10,8 @@ open Fable.Import.Browser
 open Fable.Helpers.Virtualdom
 open Fable.Helpers.Virtualdom.App
 open Fable.Helpers.Virtualdom.Html
- 
-// MODEL
-type TrainingProposal = { InterestedTrainees: InterestedTrainee list }
-and InterestedTrainee = { Name: string; TwitterUrl: string }
 
-// UPDATE
-type HomeAction = 
-    TrainingProposalsLoaded of TrainingProposal 
-
-let homeUpdate model action =
-    match action with
-    | TrainingProposalsLoaded x -> (x,[])
-
+open Domain.Home
 
 // VIEW
 let home = 
@@ -71,24 +62,11 @@ let proposals model =
                 span [ attribute "class" "hyt-proposal-people"] [
                     a [ attribute "href" trainee.TwitterUrl] [ text trainee.Name ]])))]]
 
-let about =
-    [div [ attribute "class" "row"] [
-        h1 [attribute "class" "hyt-title"; attribute "id" "/about"] [ text "About" ]]
-     div [ attribute "class" "row" ] [
-        p [ attribute "class" "hyt-content" ] [
-            text "This project is open. You can contribute on "
-            a [ attribute "href" "https://github.com/fpellet/HackYourTraining"] [ text "GitHub"]
-            text " and on "
-            a [ attribute "href" "https://softwarecraftsmanship.slack.com/messages/hackyourtraining/"] [ text "Slack"]
-            text ". You can follow us also on "
-            a [ attribute "href" "http://twitter.com/HackYrTraining"] [ text "Twitter."]
-            br []
-            text "For now, it is only a first experimentation, we are far from having all features implemented.
-                If your are interested to propose a training, please join us/contribute."]]]
+open About
 
 let homeView model =
     div [] 
-        ([home;proposals model;about] |> List.concat)
+        ([home;proposals model;About.about()] |> List.concat)
 
 // HTTP
 let load update =
