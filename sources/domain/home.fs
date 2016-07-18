@@ -11,4 +11,4 @@ type HomeAction =
 
 let homeUpdate model action =
     match action with
-    | TrainingProposalsLoaded x -> (x,[])
+    | TrainingProposalsLoaded x -> (x,[],[])

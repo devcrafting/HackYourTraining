@@ -16,10 +16,9 @@
     "url": "https://github.com/HackYourTraining/HackYourTraining/issues"
   },
   "homepage": "https://github.com/HackYourTraining/HackYourTraining#readme",
-  "//": "fable-import-virtualdom: temporary until PR https://github.com/fsprojects/Fable/pull/256 has been accepted and Node package deployed",
   "devDependencies": {
     "fable-compiler": "^0.3.26",
-    "fable-import-virtualdom": "file:./packages/Fable/import/virtualdom"
+    "fable-import-virtualdom": "0.0.9"
   },
   "dependencies": {
     "core-js": "^2.4.0",
