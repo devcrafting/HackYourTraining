@@ -38,11 +38,11 @@ body {
     text-align: center;
 }
 
-.hyt-answer-title {
+.hyt-answer-title, .hyt-training-detail-title {
     font-size: 3rem;
 }
 
-.hyt-answer-picture {
+.hyt-answer-picture, .hyt-training-detail-picture {
     text-align: center;
     margin-left: auto;
     margin-right: auto;

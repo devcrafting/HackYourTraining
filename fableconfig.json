@@ -1,7 +1,7 @@
 {
     "module": "amd",
-    "sourceMaps": false,
-    "projFile": "./sources/home.fsx",
+    "sourceMaps": true,
+    "projFile": "./sources/app.fsproj",
     "outDir": "www/js",
     "scripts": {
         "prebuild": "npm install"

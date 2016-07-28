@@ -41,7 +41,7 @@ let getInterestedTrainees =
     interestedTrainees
     |> List.map (fun trainee -> sprintf "{ \"Name\": \"%s\", \"TwitterUrl\": \"%s\" }" (fst trainee) (snd trainee))
     |> String.concat ","
-    |> sprintf "{ \"InterestedTrainees\": [ %s ] }" 
+    |> sprintf "{ \"InterestedTrainees\": [ %s ],  \"ProposedBy\": { \"Name\":\"Emilien Pecoul\", \"TwitterAccount\":\"ouarzy\" }, \"Trainer\": { \"Name\":\"Greg Young\", \"TwitterAccount\":\"gregyoung\" }, \"Location\": \"Lyon\", \"Month\": \"September\", \"Year\": \"2016\" }" 
 
 let app nodeModulesDir : WebPart =
     choose 
