@@ -8,7 +8,7 @@ open System.Diagnostics
 
 let build msbuild = 
     MSBuildHelper.MSBuildLoggers <- []
-    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/HackYourTraining.fsproj"]
+    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/HackYourTraining.fsproj"]
 
 let buildDebug () = build MSBuildDebug
 let buildRelease () = build MSBuildRelease
@@ -16,7 +16,7 @@ let buildRelease () = build MSBuildRelease
 let runAndForget () = 
     fireAndForget (fun info -> 
         info.FileName <- "./build/HackYourTraining.exe"
-        info.Arguments <- Path.Combine(__SOURCE_DIRECTORY__, "www") + " " + Path.Combine(__SOURCE_DIRECTORY__, "node_modules") + " 8083")
+        info.Arguments <- __SOURCE_DIRECTORY__ </> "build" </> "www" + " " + __SOURCE_DIRECTORY__ </> "node_modules" + " 8083")
 
 let stop () = killProcess "HackYourTraining"
 
@@ -30,7 +30,7 @@ let waitUserStopRequest () =
     System.Console.ReadLine() |> ignore
     
 let watchSource action =
-    !! (__SOURCE_DIRECTORY__ </> "*.fs") 
+    !! (__SOURCE_DIRECTORY__ </> "sources/**/*.fs") 
         |> WatchChanges (fun _ -> action ())
         |> ignore
 

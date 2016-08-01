@@ -1,8 +1,8 @@
 {
     "module": "amd",
     "sourceMaps": true,
-    "projFile": "./sources/app.fsproj",
-    "outDir": "www/js",
+    "projFile": "./sources/fable.fsproj",
+    "outDir": "build/www/js",
     "scripts": {
         "prebuild": "npm install"
     }
