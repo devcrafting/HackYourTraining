@@ -31,7 +31,7 @@
   <script>
     requirejs.config({
         // Set the baseUrl to the path of the compiled JS code
-        baseUrl: 'js',
+        baseUrl: '/js',
         paths: {
             // Explicit path to core lib (relative to baseUrl, omit .js)
             'fable-core': '../../node_modules/fable-core/fable-core.min',
@@ -39,7 +39,7 @@
         }
     });
     // Load the entry file of the app (use array, omit .js)
-    requirejs(["views/trainingProposal"]);
+    requirejs(["views/trainingRequest"]);
   </script>
 </body>
 

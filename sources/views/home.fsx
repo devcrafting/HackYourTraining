@@ -33,7 +33,7 @@ let proposals model =
     [div [ attribute "class" "row"] [
         h1 [attribute "class" "hyt-title"] [text "Last training proposals"]]
      div [ attribute "class" "row"] [
-        img [ attribute "src" "greg_young.jpg"; attribute "class" "hyt-proposal-picture"]
+        img [ attribute "src" "/images/greg_young.jpg"; attribute "class" "hyt-proposal-picture"]
         h2 [ attribute "class" "hyt-proposal-title"] [ text "Greg Young (Lyon - September)"]
         a [ attribute "href" "https://goo.gl/forms/rYYfFJTtT00Q35Sg1"; attribute "class" "btn btn-success hyt-proposal-registerButton"] [ text "I'am interested"]
         p [ attribute "class" "hyt-content"] [

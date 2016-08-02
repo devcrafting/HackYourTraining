@@ -2,6 +2,7 @@
 #r "System.Data.Linq.dll"
 #r "System.Data.dll"
 #r "../../packages/FSharp.Data.TypeProviders/lib/net40/FSharp.Data.TypeProviders.dll"
+#r "../../packages/Newtonsoft.Json/lib/net45/Newtonsoft.Json.dll"
 #load "app.fs"
 
 open System

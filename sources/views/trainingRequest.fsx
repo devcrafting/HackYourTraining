@@ -1,7 +1,7 @@
 #r "../../node_modules/fable-core/Fable.Core.dll"
 #load "../../node_modules/fable-import-virtualdom/Fable.Helpers.Virtualdom.fs"
 #load "about.fsx"
-#load "../domain/trainingProposal.fs"
+#load "../domain/trainingRequest.fs"
 
 open Fable.Core 
 open Fable.Import
@@ -11,11 +11,11 @@ open Fable.Helpers.Virtualdom
 open Fable.Helpers.Virtualdom.App
 open Fable.Helpers.Virtualdom.Html
 
-open Domain.TrainingProposal
+open Domain.TrainingRequest
 
 open System
 
-let trainerPhoto (trainer:String) = (trainer.ToLower()).Replace(" ", "_") + ".jpg"
+let trainerPhoto (trainer:String) = "/images/" + (trainer.ToLower()).Replace(" ", "_") + ".jpg"
 let trainingTitle model = sprintf " %s (%s - %s)" model.Trainer.Name model.Location model.Month
 let twitterLink person = 
     match person.TwitterAccount with
@@ -23,7 +23,7 @@ let twitterLink person =
     | None -> String.Empty 
 
 // VIEW
-let proposal model =
+let trainingRequest model =
     [div [ attribute "class" "row"] [
         h2 [ attribute "class" "hyt-training-detail-title"] [ 
             img [ trainerPhoto model.Trainer.Name |> attribute "src"; attribute "class" "hyt-training-detail-picture"]
@@ -59,34 +59,34 @@ open About
 
 let homeView model =
     div [] 
-        ([proposal model;About.about()] |> List.concat)
+        ([trainingRequest model; About.about()] |> List.concat)
 
 // HTTP
 let load update =
-    let getInterestedTrainees = XMLHttpRequest.Create()
-    getInterestedTrainees.onreadystatechange <- fun _ ->
-        if getInterestedTrainees.readyState = 4. then
-            match getInterestedTrainees.status with
+    let getTrainingRequest = XMLHttpRequest.Create()
+    getTrainingRequest.onreadystatechange <- fun _ ->
+        if getTrainingRequest.readyState = 4. then
+            match getTrainingRequest.status with
             | 200. | 0. ->
-                JS.JSON.parse getInterestedTrainees.responseText
-                |> unbox |> TrainingProposalsLoaded |> update
+                JS.JSON.parse getTrainingRequest.responseText
+                |> unbox |> Actions.TrainingRequestsLoaded |> update
             | _ -> ()
         null
-    getInterestedTrainees.``open``("GET", "/interestedTrainees", true)
-    getInterestedTrainees.setRequestHeader("Content-Type", "application/json")
-    getInterestedTrainees.send(None)
+    getTrainingRequest.``open``("GET", "/trainingRequest/sfgdfg/index", true)
+    getTrainingRequest.setRequestHeader("Content-Type", "application/json")
+    getTrainingRequest.send(None)
 
 // Start
 let initialModel = 
-    { ProposedBy = { Name = "Emilien Pecoul"; TwitterAccount = None }
-      Trainer = { Name = "Greg Young"; TwitterAccount = None }
-      Location = "Lyon"
-      Month = "September"
-      Year = "2016"
+    { ProposedBy = { Name = "?"; TwitterAccount = None }
+      Trainer = { Name = "?"; TwitterAccount = None }
+      Location = "?"
+      Month = "?"
+      Year = "?"
       InterestedTrainees = [] }
 
 let homeApp =
-    createApp { Model = initialModel; View = homeView; Update = homeUpdate }
+    createApp { Model = initialModel; View = homeView; Update = Actions.homeUpdate }
     |> withInit load
     |> withStartNode "#container"
 

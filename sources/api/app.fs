@@ -12,46 +12,33 @@ open Suave.Filters
 open Suave.Operators
 open Suave.RequestErrors
 
-open FSharp.Data.TypeProviders
-open FSharp.Linq
+open Newtonsoft.Json
 
-let interestedTrainees = 
-    ["Emilien Pecoul", "https://twitter.com/Ouarzy";
-     "Florent Pellet", "https://twitter.com/florentpellet";
-     "Clément Bouillier", "https://twitter.com/clem_bouillier";
-     "Jean Helou", "https://twitter.com/jeanhelou"
-     "Yannick Ringapin", "https://twitter.com/BlackBeard486";
-     "Kevin Lejeune", "https://twitter.com/kevin_le_jeune";
-     "Karol Chmist", "https://twitter.com/karolchmist";
-     "Gregory Cica", "";
-     "François Miton", "";
-     "Bertrand Saintes", "";
-     "Samuel Pecoul", "https://twitter.com/SamPecoul";
-     "Nadège Rouelle", "https://twitter.com/nadegerouelle";
-     "Romain Berthon", "https://twitter.com/RomainTrm";
-     "Benjamin Garel", "https://twitter.com/bgarel";
-     "Romain Dequidt", "https://twitter.com/romain_dequidt";
-     "Lucas Courot", "https://twitter.com/lucas_courot";
-     "Jean Detoeuf", "https://twitter.com/thebignet";
-     "Agnès Crepet", "https://twitter.com/agnes_crepet";
-     "Mathieu Petitdant", "https://twitter.com/mpetitdant"
-     ]
+let JSON v =
+    let settings = new JsonSerializerSettings()
+    JsonConvert.SerializeObject(v, settings)
+    |> OK
+    >=> Writers.setMimeType "application/json;charset=utf-8"
 
-let getInterestedTrainees =
-    interestedTrainees
-    |> List.map (fun trainee -> sprintf "{ \"Name\": \"%s\", \"TwitterUrl\": \"%s\" }" (fst trainee) (snd trainee))
-    |> String.concat ","
-    |> sprintf "{ \"InterestedTrainees\": [ %s ],  \"ProposedBy\": { \"Name\":\"Emilien Pecoul\", \"TwitterAccount\":\"ouarzy\" }, \"Trainer\": { \"Name\":\"Greg Young\", \"TwitterAccount\":\"gregyoung\" }, \"Location\": \"Lyon\", \"Month\": \"September\", \"Year\": \"2016\" }" 
+open Domain.TrainingRequest
+open Domain.TrainingRequest.Repositories
+
+let trainingRequests = { 
+    getFromFriendlyUrl = Infra.TrainingRequests.getFromFriendlyName
+}
 
 let app nodeModulesDir : WebPart =
     choose 
-        [ 
+        [
             Filters.GET >=> choose 
                 [ Filters.path "/" >=> Files.browseFileHome "index.html"
                   pathScan "/node_modules/%s" (fun path -> Files.browseFile nodeModulesDir (sprintf "%s" path) )
+                  pathScan "/trainingRequest/%s/index" (fun friendlyUrl -> trainingRequests.getFromFriendlyUrl friendlyUrl |> JSON)
+                  pathScan "/%s/%s/%s" (fun (model, friendlyUrl, page) -> Files.browseFileHome (sprintf "%s.html" model) ) 
+                  pathScan "/%s/%s" (fun (model, friendlyUrl) -> Files.browseFileHome (sprintf "%s.html" model) ) 
+                  // OBSOLETE routes to be replaced
                   pathScan "/%s" (fun path -> Files.browseFileHome (sprintf "%s/index.html" path))
-                  Files.browseHome ] 
-            GET >=> choose
-                [ path "/interestedTrainees" >=> request (fun req -> OK getInterestedTrainees)]   
+                  path "/interestedTrainees" >=> request (fun req -> trainingRequests.getFromFriendlyUrl "" |> JSON)
+                  Files.browseHome ]
             RequestErrors.NOT_FOUND "Page not found." 
         ]

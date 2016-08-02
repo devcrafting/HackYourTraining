@@ -4,7 +4,7 @@ body {
 
 .hyt-home {
     background-size: 100% 100%;
-    background: url(/home.jpg) no-repeat;
+    background: url(/images/home.jpg) no-repeat;
     text-align: center;
     border-radius: 20px;
 }
