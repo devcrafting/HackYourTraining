@@ -8,7 +8,7 @@ open System.Diagnostics
 
 let build msbuild = 
     MSBuildHelper.MSBuildLoggers <- []
-    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/app/HackYourTraining.fsproj"]
+    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/app/server.fsproj"]
 
 let buildDebug () = build MSBuildDebug
 let buildRelease () = build MSBuildRelease
