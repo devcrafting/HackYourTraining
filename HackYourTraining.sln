@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HackYourTraining", "sources\HackYourTraining.fsproj", "{E1A07376-4D07-446C-B854-E60B53A4CC4D}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HackYourTraining", "sources\app\HackYourTraining.fsproj", "{E1A07376-4D07-446C-B854-E60B53A4CC4D}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fable", "sources\fable.fsproj", "{8FF173B9-01ED-4C19-A639-0AB09E6666F0}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fable", "sources\fable\fable.fsproj", "{8FF173B9-01ED-4C19-A639-0AB09E6666F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

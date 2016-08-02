@@ -8,7 +8,7 @@ open System.Diagnostics
 
 let build msbuild = 
     MSBuildHelper.MSBuildLoggers <- []
-    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/HackYourTraining.fsproj"]
+    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/app/HackYourTraining.fsproj"]
 
 let buildDebug () = build MSBuildDebug
 let buildRelease () = build MSBuildRelease
@@ -30,7 +30,7 @@ let waitUserStopRequest () =
     System.Console.ReadLine() |> ignore
     
 let watchSource action =
-    !! (__SOURCE_DIRECTORY__ </> "sources/**/*.fs") 
+    !! (__SOURCE_DIRECTORY__ </> "sources/app/**/*.fs") 
         |> WatchChanges (fun _ -> action ())
         |> ignore
 
