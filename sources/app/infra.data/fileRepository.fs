@@ -5,6 +5,7 @@ open Domain.TrainingRequest
 let getFromFriendlyName friendlyUrl = 
     {
         ProposedBy = { Name = "Emilien Pecoul"; TwitterAccount = Some "ouarzy" }
+        Subject = "CQRS/Event Sourcing"
         Location = "Lyon"
         Month = "September"
         Year = "2016"

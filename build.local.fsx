@@ -16,7 +16,7 @@ let buildRelease () = build MSBuildRelease
 let runAndForget () = 
     fireAndForget (fun info -> 
         info.FileName <- "./build/HackYourTraining.exe"
-        info.Arguments <- __SOURCE_DIRECTORY__ </> "build" </> "www" + " " + __SOURCE_DIRECTORY__ </> "node_modules" + " 8083")
+        info.Arguments <- __SOURCE_DIRECTORY__ </> "build" </> "www" + " " + __SOURCE_DIRECTORY__ </> "node_modules" + " 8084")
 
 let stop () = killProcess "HackYourTraining"
 
@@ -30,7 +30,7 @@ let waitUserStopRequest () =
     System.Console.ReadLine() |> ignore
     
 let watchSource action =
-    !! (__SOURCE_DIRECTORY__ </> "sources/app/**/*.fs") 
+    !! (__SOURCE_DIRECTORY__ </> "sources/app/**/*.fs") ++ (__SOURCE_DIRECTORY__ </> "sources/app/www/**/*.*")
         |> WatchChanges (fun _ -> action ())
         |> ignore
 

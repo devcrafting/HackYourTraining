@@ -13,7 +13,7 @@ open Domain.TrainingRequest
 open System
 
 let trainerPhoto (trainer:String) = "/images/" + (trainer.ToLower()).Replace(" ", "_") + ".jpg"
-let trainingTitle model = sprintf " %s (%s - %s)" model.Trainer.Name model.Location model.Month
+let trainingTitle model = sprintf "%s with %s (%s - %s)" model.Subject model.Trainer.Name model.Location model.Month
 let twitterLink person = 
     match person.TwitterAccount with
     | Some account -> sprintf "https://www.twitter.com/%s" account
@@ -29,9 +29,11 @@ let trainingRequest model =
             a [ twitterLink model.ProposedBy |> attribute "href" ] [ text model.ProposedBy.Name]
             text " propose a "
             a [ twitterLink model.Trainer |> attribute "href" ] [ text model.Trainer.Name ]
-            text " training on CQRS/Event Sourcing in "
-            a [ attribute "href" "https://www.google.fr/maps/place/Lyon"] [ text model.Location]
+            text (sprintf " training on %s in " model.Subject)
+            a [ attribute "href" (sprintf "https://www.google.fr/maps/place/%s" model.Location)] [ text model.Location]
             sprintf " in %s %s." model.Month model.Year |> text ]
+        input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "who-is-trainer" ]
+        label [ attribute "for" "who-is-trainer"; attribute "class" "hyt-content" ] [ text (sprintf "Who is %s" model.Trainer.Name) ]
         p [ attribute "class" "hyt-content"] [
             text "Greg Young coined the term CQRS (Command Query Responsibility Segregation) and it was instantly picked up by the community who have elaborated upon it ever since."
             br []
@@ -45,12 +47,33 @@ let trainingRequest model =
             text " and also a well-known speaker at international conferences. "
             text "Greg also writes about CQRS, DDD and other hot topics on "
             a [ attribute "href" "www.codebetter.com"] [ text "www.codebetter.com."]]
-        a [ attribute "href" "https://goo.gl/forms/rYYfFJTtT00Q35Sg1"; attribute "class" "btn btn-success hyt-proposal-registerButton"] [ text "I am interested"]
-        p [ attribute "class" "hyt-content"] (
-            (text (sprintf "Currently interested people (%d/15): " (List.length model.InterestedTrainees)))
-            :: (model.InterestedTrainees |> List.map (fun trainee -> 
+        input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "who-is-interested" ]
+        label [ attribute "for" "who-is-interested"; attribute "class" "hyt-content" ] [
+            text (sprintf "Currently, %d people are interested, and you?" (List.length model.InterestedTrainees)) ]
+        p [ attribute "class" "hyt-content"] (model.InterestedTrainees |> List.map (fun trainee -> 
                 span [ attribute "class" "hyt-proposal-people"] [
-                    a [ twitterLink trainee |> attribute "href" ] [ text trainee.Name ]])))]]
+                    a [ twitterLink trainee |> attribute "href" ] [ text trainee.Name ]]))
+        p [ attribute "class" "hyt-centered-button"] [
+            a [ attribute "href" "https://goo.gl/forms/rYYfFJTtT00Q35Sg1"; attribute "class" "btn btn-success"] [ text "I am interested"]]
+        p [ attribute "class" "hyt-content hyt-answer-hightlight"] [
+            text "Sorry, Greg did not propose a training corresponding to this request. It is now opened to any trainer who would like to propose an alternative." ]
+        p [ attribute "class" "hyt-content"] [
+            ul [] [
+                li [] (
+                    [ a [ attribute "href" "dsfgsdfg/proposal/ouarzy-clem_bouillier-florentpellet" ][ text "View proposal" ]
+                      text " from " ]
+                    @ ([ { Name = "Emilien Pecoul"; TwitterAccount = Some "ouarzy" }
+                         { Name = "Clément Bouillier"; TwitterAccount = Some "clem_bouillier" }
+                         { Name = "Florent Pellet"; TwitterAccount = Some "florentpellet" } ] 
+                        |> List.map (fun trainer -> 
+                            span [ attribute "class" "hyt-proposal-people"] [
+                                a [ twitterLink trainer |> attribute "href" ] [ text trainer.Name ]]))
+                    @ [ text "" ]
+                )
+        ]]
+        p [ attribute "class" "hyt-centered-button"] [
+            a [ attribute "href" ""; attribute "class" "btn btn-success"] [ text "Propose a training" ]]
+    ]]
 
 open About
 
@@ -77,6 +100,7 @@ let load update =
 let initialModel = 
     { ProposedBy = { Name = "?"; TwitterAccount = None }
       Trainer = { Name = "?"; TwitterAccount = None }
+      Subject = "?"
       Location = "?"
       Month = "?"
       Year = "?"

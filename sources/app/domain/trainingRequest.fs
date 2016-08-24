@@ -4,6 +4,7 @@ namespace Domain.TrainingRequest
 type TrainingRequest = {
     ProposedBy: Person
     Trainer: Person
+    Subject: string
     Location: string
     Month: string
     Year: string

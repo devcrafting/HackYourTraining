@@ -62,14 +62,67 @@ body {
     padding-right: 50px;
 }
 
+.hyt-toggle-box {
+  display: none;
+}
+
+.hyt-toggle-box + * {
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  line-height: 21px;
+  margin-bottom: 5px;
+}
+
+.hyt-toggle-box + * + * {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.hyt-toggle-box:checked + * + * {
+  display: block;
+}
+
+.hyt-toggle-box + *:before {
+  background-color: #4F5150;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  content: "+";
+  display: block;
+  float: left;
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  width: 20px;
+}
+
+.hyt-toggle-box:checked + *:before {
+  content: "\2212";
+} 
+
 .hyt-proposal-people::after {
     content: ", "
 }
 
 .hyt-proposal-people:last-child::after {
-     content: "."
+     content: ""
  }
 
+.hyt-centered-button {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.hyt-centered-button a {
+    padding: 10px 40px;
+    font-size: 3rem;
+}
+
+/* TODO obsolete styles : use hyt-centered-button */
 .hyt-proposal-registerButton, .hyt-answer-proposeButton {
     padding: 10px 40px;
     font-size: 3rem;
