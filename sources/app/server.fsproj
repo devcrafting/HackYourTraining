@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="domain/trainingProposal.fs" />
     <Compile Include="domain/trainingRequest.fs" />
     <Compile Include="domain/trainingRequests.fs" />
     <Compile Include="infra.data/fileRepository.fs" />

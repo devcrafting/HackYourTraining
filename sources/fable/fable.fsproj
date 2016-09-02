@@ -57,9 +57,13 @@
     <Compile Include="../app/domain/trainingRequest.fs">
       <Link>model/trainingRequest.fs</Link>
     </Compile>
+    <Compile Include="../app/domain/trainingProposal.fs">
+      <Link>model/trainingProposal.fs</Link>
+    </Compile>
     <Compile Include="views/about.fs" />
     <Compile Include="views/home.fs" />
     <Compile Include="views/trainingRequest.fs" />
+    <Compile Include="views/trainingProposal.fs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '11.0'">

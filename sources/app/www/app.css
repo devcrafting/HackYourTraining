@@ -25,6 +25,18 @@ body {
     padding-top: 30px;
 }
 
+.glyphicon-big {
+    font-size: 5rem;
+}
+
+.hyt-where-when-howmuch {
+    padding: 10px 30px 10px 30px;
+}
+
+.hyt-where-when-howmuch .hyt-content {
+    text-align: left;
+}
+
 .hyt-proposal-picture {
     text-align: center;
     margin-left: auto;
@@ -48,6 +60,11 @@ body {
     margin-right: auto;
     width: 10%;
     border-radius: 500px;
+}
+
+.hyt-training-detail-picture {
+    height: 80px;
+    width: auto;
 }
 
 .hyt-answer-hightlight {

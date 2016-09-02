@@ -60,7 +60,7 @@ let trainingRequest model =
         p [ attribute "class" "hyt-content"] [
             ul [] [
                 li [] (
-                    [ a [ attribute "href" "dsfgsdfg/proposal/ouarzy-clem_bouillier-florentpellet" ][ text "View proposal" ]
+                    [ a [ attribute "href" "dsfgsdfg/proposal/ouarzy-clem_bouillier-florentpellet" ][ text "View proposal (in french)" ]
                       text " from " ]
                     @ ([ { Name = "Emilien Pecoul"; TwitterAccount = Some "ouarzy" }
                          { Name = "Clément Bouillier"; TwitterAccount = Some "clem_bouillier" }
