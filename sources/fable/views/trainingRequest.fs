@@ -55,8 +55,9 @@ let trainingRequest model =
                     a [ twitterLink trainee |> attribute "href" ] [ text trainee.Name ]]))
         p [ attribute "class" "hyt-centered-button"] [
             a [ attribute "href" "https://goo.gl/forms/rYYfFJTtT00Q35Sg1"; attribute "class" "btn btn-success"] [ text "I am interested"]]
-        p [ attribute "class" "hyt-content hyt-answer-hightlight"] [
-            text "Sorry, Greg did not propose a training corresponding to this request. It is now opened to any trainer who would like to propose an alternative." ]
+        p [ attribute "class" "hyt-content hyt-answer-hightlight row"] [
+            span [ attribute "class" "glyphicon glyphicon-alert glyphicon-big col-md-1" ] []
+            span [ attribute "class" "col-md-*" ] [ text "Sorry, Greg did not propose a training corresponding to this request. It is now opened to any trainer who would like to propose an alternative." ]]
         p [ attribute "class" "hyt-content"] [
             ul [] [
                 li [] (
