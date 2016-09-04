@@ -37,6 +37,10 @@ body {
     text-align: left;
 }
 
+.hyt-proposal-header .row > * {
+    text-align: center;
+}
+
 .hyt-proposal-picture {
     text-align: center;
     margin-left: auto;
@@ -52,6 +56,7 @@ body {
 
 .hyt-answer-title, .hyt-training-detail-title {
     font-size: 3rem;
+    padding-left: 20px;
 }
 
 .hyt-answer-picture, .hyt-training-detail-picture {
@@ -65,6 +70,7 @@ body {
 .hyt-training-detail-picture {
     height: 80px;
     width: auto;
+    padding: 5px;
 }
 
 .hyt-answer-hightlight {

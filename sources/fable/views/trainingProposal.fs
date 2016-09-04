@@ -30,11 +30,12 @@ let displayDate = function
 // VIEW
 let trainingProposal model =
     [div [ attribute "class" "row"] [
-        div [ attribute "class" "container-fluid hyt-where-when-howmuch"] [
-            div [ attribute "class" "row" ][
-                div [ attribute "class" "col-md-3"] 
-                    (model.Trainers |> List.map (fun trainer -> img [ trainerPhoto trainer.Name |> attribute "src"; attribute "class" "hyt-training-detail-picture"]))
-                h2 [ attribute "class" "hyt-training-detail-title col-md-9"] [ trainingTitle model |> text ] ]
+        div [ attribute "class" "container-fluid hyt-proposal-header"] [
+            div [ attribute "class" "row" ] (
+                (model.Trainers |> List.map (fun trainer ->
+                    div [ attribute "class" "col-md-1 col-xs-4" ] [ 
+                        img [ trainerPhoto trainer.Name |> attribute "src"; attribute "class" "hyt-training-detail-picture"]]))
+                @ [ h2 [ attribute "class" "hyt-training-detail-title col-md-9"] [ trainingTitle model |> text ]])
             div [ attribute "class" "row hyt-content hyt-where-when-howmuch" ][
                 div [ attribute "class" "col-md-1"] [
                     span [ attribute "class" "glyphicon glyphicon-calendar glyphicon-big" ] []]
@@ -58,6 +59,14 @@ let trainingProposal model =
         label [ attribute "for" "price-details"; attribute "class" "hyt-content" ] [ text "Price details" ]
         p [ attribute "class" "hyt-content"] [
             text "Les prix sont HT. 1000€/pers les 3 jours avec un minimum de 4 personnes. Pour chaque inscrit supplémentaire, le prix baisse pour tous (en rajoutant 500€ au coût global), soit 4500€ pour 5 = 900€/pers...jusqu'à 7000€ pour 10 (max) = 700€/pers."]
+        input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "description"; attribute "checked" "checked" ]
+        label [ attribute "for" "description"; attribute "class" "hyt-content" ] [ text "Description" ]
+        p [ attribute "class" "hyt-content"] [
+            text "La formation est organisée autour d'ateliers pour un maximum de pratique:"
+            ul [] [
+                li [] [ text "Jour 1: découverte de DDD avec un Event Storming, discussion sur les implémentations possibles (choix par Bounded Context/Subdomain), notion d'architecture émergente"]
+                li [] [ text "Jour 2: implémentation de fonctionnalités du cas du jour 1 avec Event Sourcing et CQRS (from scratch)"]
+                li [] [ text "Jour 3: implémentation CQRS sur un code legacy"]]]
         input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "who-is-interested" ]
         label [ attribute "for" "who-is-interested"; attribute "class" "hyt-content" ] [
             text (sprintf "Currently, %d people gave their feedback, and you?" (List.length model.InterestedTrainees)) ]
