@@ -30,5 +30,9 @@ https://softwarecraftsmanship.slack.com on the channel hackyourtraining
 
 You can develop under Linux/OSX/Windows equally, just run the right `restore.and.build.*` script according your platform.
 It restores dependencies through Paket and run Fake script to start Suave.io web server (in dev mode, watching changed files).
+It uses Fable and its virtualdom plugin (ELM architecture equivalent).
 
-After having run `restore.and.build.*` script once, you can just run `fake.*`script with an optional target (`build` by default, but also `watch` or `run`).
+When you ran `restore.and.build.*` script once, you can just run `fake.*`script with an optional target (`build` by default, but also `watch` or `run`).
+
+Source code is in `sources` directory, where `app` contains server side code (Suave and static web assets) and `fable` contains views.
+Note that views are using the same domain types as server side (see `app\domain`), since views are retrieving this types through a web api exposed by server side.
