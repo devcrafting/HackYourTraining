@@ -12,7 +12,10 @@ open Domain.TrainingProposal
 
 open System
 
-let trainerPhoto (trainer:String) = "/images/" + (trainer.ToLower()).Replace(" ", "_") + ".jpg"
+let trainerPhoto (trainer:Person) = 
+    match trainer.TwitterAccount with
+    | None -> "/images/unknown.jpg"
+    | Some account -> sprintf "https://twitter.com/%s/profile_image?size=original" account
 let trainingTitle model = sprintf "%s" model.Subject
 let twitterLink person = 
     match person.TwitterAccount with
@@ -33,8 +36,9 @@ let trainingProposal model =
         div [ attribute "class" "container-fluid hyt-proposal-header"] [
             div [ attribute "class" "row" ] (
                 (model.Trainers |> List.map (fun trainer ->
-                    div [ attribute "class" "col-md-1 col-xs-4" ] [ 
-                        img [ trainerPhoto trainer.Name |> attribute "src"; attribute "class" "hyt-training-detail-picture"]]))
+                    div [ attribute "class" "col-md-1 col-xs-4" ] [
+                        div [ attribute "class" "hyt-training-detail-picture"] [
+                            img [ trainerPhoto trainer |> attribute "src" ]]]))
                 @ [ h2 [ attribute "class" "hyt-training-detail-title col-md-9"] [ trainingTitle model |> text ]])
             div [ attribute "class" "row hyt-content hyt-where-when-howmuch" ][
                 div [ attribute "class" "col-md-1"] [

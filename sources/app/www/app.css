@@ -59,7 +59,7 @@ body {
     padding-left: 20px;
 }
 
-.hyt-answer-picture, .hyt-training-detail-picture {
+.hyt-answer-picture {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -68,9 +68,26 @@ body {
 }
 
 .hyt-training-detail-picture {
+    text-align: center;
+    border-radius: 500px;
+    height: 84px;
+    width: 84px;
+    padding: 0px;
+    border: 2px solid black;
+}
+
+.hyt-training-detail-picture > img {
     height: 80px;
     width: auto;
-    padding: 5px;
+    max-width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 500px;
+}
+
+.label {
+    font-size: 1.5rem;
+    margin-right: 10px;
 }
 
 .hyt-answer-hightlight {

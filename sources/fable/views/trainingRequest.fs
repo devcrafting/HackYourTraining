@@ -12,7 +12,10 @@ open Domain.TrainingRequest
 
 open System
 
-let trainerPhoto (trainer:String) = "/images/" + (trainer.ToLower()).Replace(" ", "_") + ".jpg"
+let trainerPhoto (trainer:Person) = 
+    match trainer.TwitterAccount with
+    | None -> "/images/unknown.jpg"
+    | Some account -> sprintf "https://twitter.com/%s/profile_image?size=original" account
 let trainingTitle model = sprintf "%s with %s (%s - %s)" model.Subject model.Trainer.Name model.Location model.Month
 let twitterLink person = 
     match person.TwitterAccount with
@@ -22,9 +25,12 @@ let twitterLink person =
 // VIEW
 let trainingRequest model =
     [div [ attribute "class" "row"] [
-        h2 [ attribute "class" "hyt-training-detail-title"] [ 
-            img [ trainerPhoto model.Trainer.Name |> attribute "src"; attribute "class" "hyt-training-detail-picture"]
-            trainingTitle model |> text]
+        div [ attribute "class" "col-md-1 col-xs-4" ] [
+            div [ attribute "class" "hyt-training-detail-picture"] [
+                img [ trainerPhoto model.Trainer |> attribute "src" ]]]
+        h2 [ attribute "class" "col-md-11 col-xs-8 hyt-training-detail-title"] [ 
+            trainingTitle model |> text]]
+     div [ attribute "class" "row"] [
         p [ attribute "class" "hyt-content"] [
             a [ twitterLink model.ProposedBy |> attribute "href" ] [ text model.ProposedBy.Name]
             text " propose a "
@@ -61,7 +67,7 @@ let trainingRequest model =
         p [ attribute "class" "hyt-content"] [
             ul [] [
                 li [] (
-                    [ a [ attribute "href" "dsfgsdfg/proposal/ouarzy-clem_bouillier-florentpellet" ][ text "View proposal (in french)" ]
+                    [ a [ attribute "href" "2016-09-Lyon-GregYoung-CQRS-ES/proposal/ouarzy-clem_bouillier-florentpellet" ][ text "View proposal (in french)" ]
                       text " from " ]
                     @ ([ { Name = "Emilien Pecoul"; TwitterAccount = Some "ouarzy" }
                          { Name = "Clément Bouillier"; TwitterAccount = Some "clem_bouillier" }
