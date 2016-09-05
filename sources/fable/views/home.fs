@@ -27,15 +27,15 @@ let home =
             text "We would like training to be popularized and pulled by the community to raise the bar
                 (instead of pushed corporate/\"one size fit all\" training)."
             br [];br []
-            text "Then, the goal is that anyone could propose a training somewhere with a subject and a \"trainer of his dream\" 
-                if you know one (else you will receive several proposals)."
+            text "Then, the goal is that anyone could request a training somewhere with a subject and a \"trainer of his dream\" 
+                (if you know one else you can request to receive several proposals)."
             br [];br []
             text "You can show your interest in a training, given you would be able to assist on some conditions? Note there is
                 absolutely NO commitment."]]]
 
 let proposals model =
     [div [ attribute "class" "row"] [
-        h1 [attribute "class" "hyt-title"] [text "Last training proposals"]]
+        h1 [attribute "class" "hyt-title"] [text "Last training requests & proposals"]]
      div [ attribute "class" "row"] [
         div [ attribute "class" "col-md-1 col-xs-4" ] [
             div [ attribute "class" "hyt-training-detail-picture"] [
