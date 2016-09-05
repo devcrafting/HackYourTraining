@@ -56,9 +56,9 @@ let trainingProposal model =
         input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "who-are-the-trainers" ]
         label [ attribute "for" "who-are-the-trainers"; attribute "class" "hyt-content" ] ((text "Who are ") :: (listPerson model.Trainers))
         p [ attribute "class" "hyt-content"] [
-            text "Emilien, Florent and Clément are three independant developers, working frequently together on different projects. They worked with CQRS and Event Sourcing on several projects during the last 4 years. They have contributed to create "
-            a [attribute "href" "https://github.com/DevLyon/mixter" ] [ text "CQRS/ES koans" ]
-            text " which have been presented in several conferences."]
+            text "Emilien, Florent et Clément sont développeurs indépendants, travaillant fréquemment ensemble sur différents projets. Ils ont pratiqué CQRS et Event Sourcing sur différents projets durant les 4 dernières années. Ils ont largement contribué à créer "
+            a [attribute "href" "https://github.com/DevLyon/mixter" ] [ text "ces \"koans\" CQRS/ES" ]
+            text ", à partir desquels ils ont animés des ateliers lors de plusieurs conférences."]
         input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "price-details" ]
         label [ attribute "for" "price-details"; attribute "class" "hyt-content" ] [ text "Price details" ]
         p [ attribute "class" "hyt-content"] [
