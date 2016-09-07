@@ -70,7 +70,8 @@ let trainingProposal model =
             ul [] [
                 li [] [ text "Jour 1: découverte de DDD avec un Event Storming, discussion sur les implémentations possibles (choix par Bounded Context/Subdomain), notion d'architecture émergente"]
                 li [] [ text "Jour 2: implémentation de fonctionnalités du cas du jour 1 avec Event Sourcing et CQRS (from scratch)"]
-                li [] [ text "Jour 3: implémentation CQRS sur un code legacy"]]]
+                li [] [ text "Jour 3: implémentation CQRS sur un code legacy"]]
+            text "La formation aura lieu dans une salle dédiée, avec petit-déjeuners d'accueil et déjeuners inclus. Vous devrez uniquement amener votre PC avec votre environnement de développement préféré."]
         input [ attribute "type" "checkbox"; attribute "class" "hyt-content hyt-toggle-box"; attribute "id" "who-is-interested" ]
         label [ attribute "for" "who-is-interested"; attribute "class" "hyt-content" ] [
             text (sprintf "Currently, %d people gave their feedback, and you?" (List.length model.InterestedTrainees)) ]
@@ -78,7 +79,7 @@ let trainingProposal model =
                 span [ attribute "class" "hyt-proposal-people"] [
                     a [ twitterLink trainee |> attribute "href" ] [ text trainee.Name ]]))
         p [ attribute "class" "hyt-centered-button"] [
-            a [ attribute "href" "https://goo.gl/forms/rYYfFJTtT00Q35Sg1"; attribute "class" "btn btn-success"] [ text "I give my feedback on this proposition"]]
+            a [ attribute "href" "https://goo.gl/forms/zsTl0fESnNcMonw62"; attribute "class" "btn btn-success"] [ text "I give my feedback"]]
         ]]
 
 open About

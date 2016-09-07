@@ -79,7 +79,7 @@ let trainingRequest model =
                 )
         ]]
         p [ attribute "class" "hyt-centered-button"] [
-            a [ attribute "href" ""; attribute "class" "btn btn-success"] [ text "Propose a training" ]]
+            a [ attribute "href" "https://goo.gl/forms/bDIayOikoiTbVxZw1"; attribute "class" "btn btn-success"] [ text "Propose a training" ]]
     ]]
 
 open About
