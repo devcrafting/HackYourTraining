@@ -46,7 +46,13 @@ let proposals model =
             div [ attribute "class" "pull-right" ] [
                 span [ attribute "class" "label label-warning" ] [ text "Requested trainer did not make a proposal" ]
                 span [ attribute "class" "label label-success" ] [ text "1 alternative proposal" ]]]]
-     hr []]
+     hr []
+     p [ attribute "class" "hyt-content"] [
+        text "You did not find training you would like to assist, but you have a subject you would like to be trained, but you have to go elsewhere to get it, or wait too long, or pay way too much..."
+        br []
+        text "Good news ! You can make a training request on HackYourTraining to get a chance to gather enough people interested in the same subject, around your location and approximately when you want! It takes few minutes to fill in the form, there are NO commitment, just cool things that could happen!"]
+     p [ attribute "class" "hyt-centered-button"] [
+        a [ attribute "href" "https://goo.gl/forms/WvfYhziP1qcLMWIn2"; attribute "class" "btn btn-success"] [ text "Make a training request" ]]]
 
 open About
 
