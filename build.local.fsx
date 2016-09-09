@@ -8,7 +8,7 @@ open System.Diagnostics
 
 let build msbuild = 
     MSBuildHelper.MSBuildLoggers <- []
-    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/HackYourTraining.fsproj"]
+    msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/app/server.fsproj"]
 
 let buildDebug () = build MSBuildDebug
 let buildRelease () = build MSBuildRelease
@@ -16,7 +16,7 @@ let buildRelease () = build MSBuildRelease
 let runAndForget () = 
     fireAndForget (fun info -> 
         info.FileName <- "./build/HackYourTraining.exe"
-        info.Arguments <- Path.Combine(__SOURCE_DIRECTORY__, "www") + " 8083")
+        info.Arguments <- __SOURCE_DIRECTORY__ </> "build" </> "www" + " " + __SOURCE_DIRECTORY__ </> "node_modules" + " 8084")
 
 let stop () = killProcess "HackYourTraining"
 
@@ -30,12 +30,18 @@ let waitUserStopRequest () =
     System.Console.ReadLine() |> ignore
     
 let watchSource action =
-    !! (__SOURCE_DIRECTORY__ </> "*.fs") 
+    !! (__SOURCE_DIRECTORY__ </> "sources/app/**/*.fs") ++ (__SOURCE_DIRECTORY__ </> "sources/app/www/**/*.*")
         |> WatchChanges (fun _ -> action ())
         |> ignore
 
 let reloadOnChange () =
     watchSource reload
+
+let fableWatch () =
+    fireAndForget (fun info ->
+        info.FileName <- "node"
+        info.Arguments <- "./node_modules/fable-compiler/fable.js -w")
+    |> ignore
 
 let askStop = waitUserStopRequest >> stop
 
@@ -48,7 +54,7 @@ Target "build" (buildDebug >> ignore)
 
 Target "run" (runAndForget >> askStop)
 
-Target "watch" (runAndForget >> reloadOnChange >> askStop)
+Target "watch" (runAndForget >> reloadOnChange >> fableWatch >> askStop)
 
 Target "publish" (buildRelease >> ignore >> buildDocker >> ignore)
 

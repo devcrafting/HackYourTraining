@@ -1,6 +1,7 @@
 source https://nuget.org/api/v2
 
 nuget FAKE
+nuget Newtonsoft.Json
 nuget Suave
 nuget FSharp.Compiler.Service
 nuget FSharp.Core
