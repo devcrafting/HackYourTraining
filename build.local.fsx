@@ -11,7 +11,12 @@ let build msbuild =
     msbuild "./build" "Build" [__SOURCE_DIRECTORY__ + "/sources/app/server.fsproj"]
 
 let buildDebug () = build MSBuildDebug
-let buildRelease () = build MSBuildRelease
+let buildRelease () = 
+    execProcess (fun info ->
+        info.FileName <- "node"
+        info.Arguments <- "./node_modules/fable-compiler/fable.js") (TimeSpan.FromSeconds(60.))
+    |> ignore
+    build MSBuildRelease |> ignore
 
 let runAndForget () = 
     fireAndForget (fun info -> 
@@ -55,6 +60,8 @@ Target "build" (buildDebug >> ignore)
 Target "run" (runAndForget >> askStop)
 
 Target "watch" (runAndForget >> reloadOnChange >> fableWatch >> askStop)
+
+Target "buildRelease" buildRelease
 
 Target "publish" (buildRelease >> ignore >> buildDocker >> ignore)
 
