@@ -8,5 +8,8 @@ if not exist .paket\paket.exe (
 @echo "Restoring dependencies"
 .paket\paket.exe restore
 
+@echo "Installing npm dependencies"
+npm install
+
 @echo "Build server"
 .\fake.cmd

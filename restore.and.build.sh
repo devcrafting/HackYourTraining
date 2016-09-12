@@ -8,5 +8,8 @@ fi
 echo "Restoring dependencies"
 mono .paket/paket.exe restore
 
+echo "Installing npm dependencies"
+npm install
+
 echo "Build server"
 sh ./fake.sh $@
