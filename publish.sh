@@ -1,1 +1,0 @@
-sh ./restore.and.build.sh publish
